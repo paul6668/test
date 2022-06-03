@@ -5,6 +5,6 @@ resources:
 - ../../base
 - namespace.yaml
 
-namePrefix: dev-
+#namePrefix: dev-
 #commonLabels:
 #  env: dev
