@@ -5,6 +5,6 @@ resources:
 - ../../../base/app1
 - namespace.yaml
 
-namePrefix: qa-
+#namePrefix: qa-
 #commonLabels:
 #  env: qa
