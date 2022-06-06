@@ -2,7 +2,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: paui2
+    app: paul2
   name: paulapp2
 spec:
   port:
