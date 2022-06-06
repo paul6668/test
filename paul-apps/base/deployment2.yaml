@@ -14,7 +14,7 @@ spec:
         app: paul-app2
     spec:
       containers:
-      - image: registry.redhat.io/rhscl/httpd-24-rhel7
+      - image: nginxinc/nginx-unprivileged
         name: paul-app2
         ports:
         - containerPort: 8080
