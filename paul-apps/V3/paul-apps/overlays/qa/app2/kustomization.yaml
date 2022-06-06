@@ -1,14 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: qa
+namespace: qa-v3
 resources:
-- ../../base
+- ../../../base/app02
 - namespace.yaml
 
-#namePrefix:
-#- path: metadata/name
-#- path: kind/spec/name
-
-#namePrefix: 
-#  qa-
-
+namePrefix: qa-
+#commonLabels:
+#  env: qa

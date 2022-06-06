@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: qa
+  name: qa-v3
   labels:
-    env: qa 
+    env: qa-v3
+    

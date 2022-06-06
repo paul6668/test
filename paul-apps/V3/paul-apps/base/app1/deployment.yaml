@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: paul-app
-  name: paul-app
+    app: paul-app1
+  name: paul-app1
 spec:
   selector:
     matchLabels:
-      app: paul-app
+      app: paul-app1
   template:
     metadata:
       labels:
-        app: paul-app
+        app: paul-app1
     spec:
       containers:
       - image: nginxinc/nginx-unprivileged
-        name: paul-app
+        name: paul-app1
         ports:
         - containerPort: 8080
