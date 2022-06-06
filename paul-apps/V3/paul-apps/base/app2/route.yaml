@@ -3,7 +3,7 @@ kind: Route
 metadata:
   labels:
     app: paul2
-  name: paulapp2
+  name: paul-app2
 spec:
   port:
     targetPort: 8080
