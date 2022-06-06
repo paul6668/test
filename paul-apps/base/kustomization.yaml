@@ -1,4 +1,8 @@
 resources:
-- service.yaml
-- deployment.yaml
-- route.yaml
+- service1.yaml
+- deployment1.yaml
+- route1.yaml
+- service2.yaml
+- deployment2.yaml
+- route2.yaml
+

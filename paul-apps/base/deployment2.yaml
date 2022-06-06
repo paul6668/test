@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: paul-app
+  name: paul-app
+spec:
+  selector:
+    matchLabels:
+      app: paul-app
+  template:
+    metadata:
+      labels:
+        app: paul-app
+    spec:
+      containers:
+      - image: registry.redhat.io/rhscl/httpd-24-rhel7
+        name: paul-app
+        ports:
+        - containerPort: 8080
