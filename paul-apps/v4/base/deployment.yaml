@@ -16,6 +16,9 @@ spec:
       containers:
       - image: nginxinc/nginx-unprivileged
         name: nginx1
+        securityContext:
+          runAsUser: 101
+          runAsGroup: 101
         ports:
         - containerPort: 8080
         volumeMounts:
