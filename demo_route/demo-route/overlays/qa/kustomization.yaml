@@ -1,3 +1,0 @@
-resources:
-- app1/kustomization.yaml
-- app2/kustomization.yaml
