@@ -11,6 +11,6 @@ spec:
       targetPort: 80
   to:
     kind: Service
-#    name: kustomize-guestbook-ui
-     name: guestbook-ui
+#      name: kustomize-guestbook-ui
+    name: guestbook-ui
     weight: 100
