@@ -20,9 +20,9 @@ spec:
         - containerPort: 8080
         volumeMounts:
           - mountPath: /usr/share/nginx/html/index.html
-          name: nginx-conf
-          subPath: index.html
+            name: nginx-conf1
+            subPath: index.html
     volumes:
-      - name: nginx-conf
+      - name: nginx-conf1
         configMap:
           name: nginx-index-html-v1cm
