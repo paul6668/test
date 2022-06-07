@@ -14,7 +14,7 @@ spec:
         app: nginx1
     spec:
       containers:
-      - image: registry.redhat.io/rhscl/httpd-24-rhel7
+      - image: nginxinc/nginx-unprivileged
         name: nginx1
         ports:
         - containerPort: 8080
