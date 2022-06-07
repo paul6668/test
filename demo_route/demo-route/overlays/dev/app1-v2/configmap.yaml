@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  index-v2.html: "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<title>Welcome to Version2!</title>\r\n<style>\r\nh
+tml
+    { color-scheme: light dark; }\r\nbody { width: 35em; margin: 0 auto;\r\nfont-family:
+    Tahoma, Verdana, Arial, sans-serif; }\r\n</style>\r\n</head>\r\n<body>\r\n<h1>Welcome
+    to Version2!</h1>\r\n<p>If you see this page, the nginx web server is successfully
+    installed and\r\nworking. Further configuration is required.</p>\r\n\r\n<p>For
+    online documentation and support please refer to\r\n<a href=\"http://nginx.org/\">nginx.org</a>.<br/>\r\
+nCommercial
+    support is available at\r\n<a href=\"http://nginx.com/\">nginx.com</a>.</p>\r\n\r\n<p><em>Thank
+    you for using Version2.</em></p>\r\n</body>\r\n</html>"
+kind: ConfigMap
+metadata:
+  name: nginx-index-html-v2cm
+
