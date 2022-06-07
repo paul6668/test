@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx1
+  name: nginx1
+spec:
+  selector:
+    matchLabels:
+      app: nginx1
+  template:
+    metadata:
+      labels:
+        app: nginx1
+    spec:
+      containers:
+      - image: nginxinc/nginx-unprivileged
+        name: nginx1
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html/index.html
+          name: nginx-conf1
+          subPath: index.html
+      volumes:
+      - configMap:
+          defaultMode: 420
+          items:
+          - key: index-v1.html
+            path: index.html
+          name: nginx-index-html-v1cm
+        name: nginx-conf1
+
