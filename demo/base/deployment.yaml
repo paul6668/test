@@ -28,5 +28,5 @@ spec:
           items:
           - key: index-v1.html
             path: index.html          
-          name: nginx-index-html-v2cm
+          name: nginx-index-html-v1cm
         name: nginx-conf1
