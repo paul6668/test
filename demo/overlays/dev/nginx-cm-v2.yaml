@@ -10,4 +10,4 @@ data:
     you for using Version2.</em></p>\r\n</body>\r\n</html>"
 kind: ConfigMap
 metadata:
-  name: nginx-index-html-v1cm
+  name: nginx-index-html-v2cm
