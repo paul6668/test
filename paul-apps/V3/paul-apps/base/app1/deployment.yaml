@@ -25,4 +25,5 @@ spec:
     volumes:
       - name: nginx-conf1
         configMap:
+          defaultMode: 420
           name: nginx-index-html-v1cm
