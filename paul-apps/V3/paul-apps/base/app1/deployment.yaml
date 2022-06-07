@@ -18,3 +18,11 @@ spec:
         name: paul-app1
         ports:
         - containerPort: 8080
+        volumeMounts:
+          - mountPath: /usr/share/nginx/html/index.html
+          name: nginx-conf
+          subPath: index.html
+    volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-index-html-v1cm
