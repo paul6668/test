@@ -16,9 +16,6 @@ spec:
       containers:
       - image: nginxinc/nginx-unprivileged
         name: nginx1
-        securityContext:
-          runAsUser: 101
-          runAsGroup: 101
         ports:
         - containerPort: 8080
         volumeMounts:
@@ -28,5 +25,8 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
+          items:
+          - key: index.html
+            path: index.html
           name: nginx-index-html-v1cm
         name: nginx-conf1
