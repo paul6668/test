@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dev-demo
+  name: homelab
   labels:
-    env: dev-demo
+    env: homelab
     
