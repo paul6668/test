@@ -1,16 +1,19 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
+  name: presync-test
   annotations:
     argocd.argoproj.io/hook: PreSync
-#    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
+  selector: {}
   template:
+    metadata:
+      name: presync-test
     spec:
       containers:
-      - command:
-          - curl www.google.com
-          image: 'nginxinc/nginx-unprivileged'
-          name: PreSync-test
+        - name: presync-test
+          image: nginxinc/nginx-unprivileged
+          command:
+            - curl
+            - 'www.google'
       restartPolicy: Never
-
