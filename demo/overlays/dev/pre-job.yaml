@@ -8,9 +8,9 @@ spec:
   template:
     spec:
       containers:
-      - name: PreSync-test
+      - command:
+          - curl www.google.com
           image: 'nginxinc/nginx-unprivileged'
-          command:
-            - curl www.google.com
+          name: PreSync-test
       restartPolicy: Never
-  backoffLimit: 2
+
