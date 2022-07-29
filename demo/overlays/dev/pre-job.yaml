@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: app-ping-
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: PreSync-test
+          image: 'nginxinc/nginx-unprivileged'
+          command:
+          - "curl www.google.com"
+      restartPolicy: Never
+  backoffLimit: 2
