@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: app-ping-
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - name: PreSync-test
+          image: 'centos:7'
+          command:
+          - /bin/sleep
+          - "ping -c 20 8.8.8.8"
+      restartPolicy: Never
+  backoffLimit: 2
