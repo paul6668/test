@@ -15,5 +15,5 @@ spec:
           image: nginxinc/nginx-unprivileged
           command:
             - "curl"
-            - "http://www.google."
+            - "http://www.google.com"
       restartPolicy: Never
