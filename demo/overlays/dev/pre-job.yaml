@@ -10,8 +10,8 @@ spec:
     spec:
       containers:
       - name: PreSync-test
-          image: 'centos:7'
+          image: 'nginxinc/nginx-unprivileged'
           command:
-          - "ping -c 20 8.8.8.8"
+          - "curl www.google.com"
       restartPolicy: Never
   backoffLimit: 2
