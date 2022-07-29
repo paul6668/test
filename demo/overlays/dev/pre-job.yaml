@@ -4,7 +4,7 @@ metadata:
   generateName: app-ping-
   annotations:
     argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+#    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
