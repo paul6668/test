@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: homelab
 resources:
   - ../../base
-  - pre-job.yaml
+# - pre-job.yaml
 #- namespace.yaml
   - nginx-cm-v1.yaml
   - nginx-cm-v2.yaml
