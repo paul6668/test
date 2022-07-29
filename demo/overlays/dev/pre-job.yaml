@@ -12,7 +12,6 @@ spec:
       - name: PreSync-test
           image: 'centos:7'
           command:
-          - /bin/sleep
           - "ping -c 20 8.8.8.8"
       restartPolicy: Never
   backoffLimit: 2
