@@ -14,5 +14,6 @@ spec:
         - name: presync-test
           image: nginxinc/nginx-unprivileged
           command:
-            - 'curl www.google'
+            - 'curl'
+            - 'http://www.google'
       restartPolicy: Never
