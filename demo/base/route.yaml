@@ -6,7 +6,7 @@ metadata:
   name: nginx1app
 spec:
   port:
-    targetPort: 8080
+    targetPort: 80
   to:
     kind: Service
     name: nginx1svc
