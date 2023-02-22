@@ -6,6 +6,7 @@ resources:
 - namespace.yaml
 - nginx-cm-v1.yaml
 - nginx-cm-v2.yaml
+- hpa.yaml
 
 #namePrefix: dev-
 #commonLabels:
