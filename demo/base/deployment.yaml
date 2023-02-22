@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    sidecar.istio.io/inject: 'true'
   labels:
     app: nginx1
   name: nginx1
@@ -12,6 +10,8 @@ spec:
       app: nginx1
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: 'true'
       labels:
         app: nginx1
     spec:
