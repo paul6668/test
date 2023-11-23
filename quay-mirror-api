@@ -1,0 +1,19 @@
+curl  -k -vvv -X PUT https://quay.io/api/v1/repository/scl-dev/test_test/mirror \
+-H "Authorization: Bearer abcd12334554353543" \
+-H "Content-Type: application/json" \
+--data-raw '{ 
+  "is_enabled": True, 
+    "external_reference": "quay.io/scl-qa/devops_hello-world",
+    "external_registry_username": "openshift_devops+deployer",
+    "external_registry_config": {
+        "verify_tls": false,
+        "unsigned_images": false,
+    },
+    "sync_interval": 86400,
+    "sync_start_date": "2023-11-23T08:01:00Z",
+    "root_rule": {
+        "rule_kind": "tag_glob_csv",
+        "rule_value": "*.*.*-rel-rel"
+    },
+    "robot_username": scl-dev+builder
+}'
