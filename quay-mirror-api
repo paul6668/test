@@ -51,3 +51,25 @@ curl  -k -vvv -X POST https://quay.io/api/v1/repository/scl-dev/test_test/mirror
     },
     "robot_username": "scl-dev+builder"
 }'
+
+
+
+
+curl -X POST "https://<yourquayhost>/api/v1/repository/myorg/kubevirt/virt-api/mirror" \
+  -H "Authorization: Bearer <your_access_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "external_registry_config": {
+      "external_registry_username": "<your_external_registry_username>",
+      "external_registry_password": "<your_external_registry_password>",
+      "external_registry_type": "quay",
+      "external_registry_url": "quay.io",
+      "external_repository": "kubevirt/virt-api",
+      "sync_interval": 60,
+      "sync_start_date": null,
+      "root_rule": {
+        "rule_kind": "tag_glob_csv",
+        "rule_value": "*"
+      }
+    }
+  }'
