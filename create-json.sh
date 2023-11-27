@@ -15,7 +15,7 @@ if [ ! -f "$csv_file" ]; then
 fi
 
 # Loop through each line in the CSV file
-while IFS=, read -r project app env; do
+tail -n +2 "$csv_file" | while IFS=, read -r project app env; do
     # Create JSON content
     json_content=$(cat <<EOF
 {
