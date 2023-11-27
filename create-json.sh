@@ -14,6 +14,11 @@ if [ ! -f "$csv_file" ]; then
     exit 1
 fi
 
+# Create a directory to store the JSON files
+output_dir="json_output"
+mkdir -p "$output_dir"
+
+
 # Loop through each line in the CSV file
 tail -n +2 "$csv_file" | while IFS=, read -r project app env; do
     # Create JSON content
@@ -29,7 +34,9 @@ EOF
     )
 
     # Output JSON content to a file
-    json_file="${app}_${env}.json"
+    json_file="$output_dir/${app}_${env}.json"
     echo "$json_content" > "$json_file"
     echo "Created $json_file"
 done < "$csv_file"
+
+echo "JSON files have been generated in the '$output_dir' directory."
