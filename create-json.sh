@@ -40,3 +40,24 @@ EOF
 done < "$csv_file"
 
 echo "JSON files have been generated in the '$output_dir' directory."
+
+---
+
+#!/bin/bash
+
+# Loop through each JSON file in the current folder
+for json_file in *.json; do
+    if [ -f "$json_file" ]; then
+        # Read JSON content from the file
+        json_content=$(cat "$json_file")
+
+        # Make a POST request with the JSON content
+        echo "Posting $json_file"
+        curl -X POST -H "Content-Type: application/json" -d "$json_content" http://your-api-endpoint.com
+        # Replace http://your-api-endpoint.com with the actual API endpoint
+
+        # Add a newline for better readability
+        echo
+    fi
+done
+
