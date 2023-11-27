@@ -1,0 +1,7 @@
+  {
+    "project": "devops",
+    "app": "test-hello-app01",
+    "env": "dev",
+    "kustomize_template": "dotnet",
+    "org": "scl-dev"
+  }
