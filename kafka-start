@@ -1,0 +1,2 @@
+KAFKA_HEAP_OPTS=-Xms6g -Xmx6g -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspa
+ceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80"
