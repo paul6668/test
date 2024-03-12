@@ -53,3 +53,29 @@ spec:
       storageClassName: iomesh-psql-sc
       volumeMode: Filesystem
 ```
+```
+kubectl get cluster.postgresql.k8s.enterprisedb.io
+NAME        AGE     INSTANCES   READY   STATUS                     PRIMARY
+psql-db01   6h11m   3           3       Cluster in healthy state   psql-db01-1
+
+
+kubectl get pvc
+NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+iomesh-mysql-pvc   Bound    pvc-4cf15dcd-e7ae-4b15-a380-91ff717dc3e6   10Gi       RWO            iomesh-mysql-sc   15d
+psql-db01-1        Bound    pvc-86583f77-357a-4bea-aacc-7f78f338c1cc   20Gi       RWO            iomesh-psql-sc    6h12m
+psql-db01-2        Bound    pvc-90d5d668-e7a6-4ff9-b88c-3b7675837340   20Gi       RWO            iomesh-psql-sc    6h10m
+psql-db01-3        Bound    pvc-3dab210b-4cb1-4591-b36b-8742752b20b9   20Gi       RWO            iomesh-psql-sc    6h8m
+
+```
+
+#Testing
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+![image](https://github.com/paul6668/test/assets/105109093/7251aa93-53b6-4285-89f4-b5e7a8202218)
+
+```
