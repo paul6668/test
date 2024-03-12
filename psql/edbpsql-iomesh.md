@@ -76,6 +76,14 @@ kubectl cnp pgbench \
   cluster-example \
   -- --initialize --scale 1000
 
+```
 ![image](https://github.com/paul6668/test/assets/105109093/7251aa93-53b6-4285-89f4-b5e7a8202218)
 
-```
+## Resources Usage
+- db01
+![image](https://github.com/paul6668/test/assets/105109093/acfd1669-80e6-4076-a034-a9dea2746b0a)
+- db02
+![image](https://github.com/paul6668/test/assets/105109093/6b45feb1-1a00-44e8-aff4-7a210f82c389)
+- db03
+![image](https://github.com/paul6668/test/assets/105109093/ae0d3028-ad8f-420f-ad61-5b578a73b779)
+
