@@ -77,7 +77,11 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-![image](https://github.com/paul6668/test/assets/105109093/7251aa93-53b6-4285-89f4-b5e7a8202218)
+![image](https://github.com/paul6668/test/assets/105109093/03540107-2851-499f-9f65-506e779c4f66)
+
+![image](https://github.com/paul6668/test/assets/105109093/0743dff8-51c3-4e44-8df2-8e1aed2ea8f1)
+
+
 
 ## Resources Usage
 - db01
