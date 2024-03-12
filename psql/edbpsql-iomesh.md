@@ -91,3 +91,11 @@ kubectl cnp pgbench \
 - db03
 ![image](https://github.com/paul6668/test/assets/105109093/ae0d3028-ad8f-420f-ad61-5b578a73b779)
 
+![image](https://github.com/paul6668/test/assets/105109093/96f254aa-bf51-43c8-9eae-e39faad1274c)
+
+![image](https://github.com/paul6668/test/assets/105109093/ffe23ad5-c68f-486f-aab5-0376545af042)
+
+![image](https://github.com/paul6668/test/assets/105109093/669083d5-682e-4182-baa3-772de35b7ba7)
+
+
+
