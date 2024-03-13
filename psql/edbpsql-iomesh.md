@@ -27,7 +27,7 @@ provisioner: com.iomesh.csi-driver
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
 ```
-- Create Postgres Cluster with 1 primary and 2 replica nodes 
+- Create Postgres Cluster with 1 primary and 2 standby nodes 
 ```
 apiVersion: postgresql.k8s.enterprisedb.io/v1
 kind: Cluster
@@ -70,8 +70,8 @@ psql-db01-2        Bound    pvc-90d5d668-e7a6-4ff9-b88c-3b7675837340   20Gi     
 psql-db01-3        Bound    pvc-3dab210b-4cb1-4591-b36b-8742752b20b9   20Gi       RWO            iomesh-psql-sc    6h8m
 
 ```
-# Benchmarking - Part1 with OCP runing  
-#Testing
+# Benchmarking 
+#Testing Part1 - With OCP runing  
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
@@ -80,6 +80,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
+Taken 28 mintues
 ![image](https://github.com/paul6668/test/assets/105109093/03540107-2851-499f-9f65-506e779c4f66)
 
 ![image](https://github.com/paul6668/test/assets/105109093/0743dff8-51c3-4e44-8df2-8e1aed2ea8f1)
@@ -99,6 +100,33 @@ kubectl cnp pgbench \
 ![image](https://github.com/paul6668/test/assets/105109093/ffe23ad5-c68f-486f-aab5-0376545af042)
 
 ![image](https://github.com/paul6668/test/assets/105109093/669083d5-682e-4182-baa3-772de35b7ba7)
+
+#Testing Part2 - Without OCP runing  
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+```
+Taken 22.4 minutes
+![image](https://github.com/paul6668/test/assets/105109093/0e7068a9-1a6e-4e6f-b4c7-5a7d15d34ba7)
+## Resources Usage
+- db01
+![image](https://github.com/paul6668/test/assets/105109093/e8636367-5c6f-439e-8d65-99393c12128d)
+
+- db02
+![image](https://github.com/paul6668/test/assets/105109093/29dfb944-0b40-4d50-a3de-0e75e6ef7277)
+
+- db03
+![image](https://github.com/paul6668/test/assets/105109093/113cd6a1-e862-4740-9f8f-8b9bd06dce74)
+
+![image](https://github.com/paul6668/test/assets/105109093/890e1a57-dc5c-41af-9a19-42be1514aeef)
+
+![image](https://github.com/paul6668/test/assets/105109093/4f5b5d59-12a0-409e-8e7f-02984275d743)
+
+![image](https://github.com/paul6668/test/assets/105109093/c13415c4-7e1b-4738-924e-ddbd486146d8)
 
 
 
