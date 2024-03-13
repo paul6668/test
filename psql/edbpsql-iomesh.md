@@ -71,7 +71,7 @@ psql-db01-3        Bound    pvc-3dab210b-4cb1-4591-b36b-8742752b20b9   20Gi     
 
 ```
 # Benchmarking 
-## Testing Part1 - With OCP runing  
+## Testing Part1 - With OCP runing, iomesh + PSQL 1 primary / 2 standby
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
@@ -101,7 +101,7 @@ Taken 28 mintues
 
 ![image](https://github.com/paul6668/test/assets/105109093/669083d5-682e-4182-baa3-772de35b7ba7)
 
-## Testing Part2 - Without OCP runing  
+## Testing Part2 - Without OCP runing, iomesh + PSQL 1 primary / 2 standby
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
@@ -128,7 +128,7 @@ Taken 22.4 minutes
 
 ![image](https://github.com/paul6668/test/assets/105109093/c13415c4-7e1b-4738-924e-ddbd486146d8)
 
-## Testing Part3 - Without OCP runing and PSQL single node 
+## Testing Part3 - Without OCP runing, iomesh + PSQL single node 
 ![image](https://github.com/paul6668/test/assets/105109093/de3d6398-d03b-442e-b8e9-42741b971866)
 
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
@@ -148,4 +148,32 @@ Taken 9 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/3190f94e-c94a-43b4-922b-4f90080b4b66)
 ![image](https://github.com/paul6668/test/assets/105109093/3e9212ac-dcc0-4837-b30e-21200ce4300f)
 ![image](https://github.com/paul6668/test/assets/105109093/f9185f5f-95ef-49b8-93d5-86010cde511e)
+
+## Testing Part4 - Without OCP, local disk + PSQL 1 primary / 2 standby
+![image](https://github.com/paul6668/test/assets/105109093/d20eb1b9-fbde-488b-beee-fefca5d76d5b)
+![image](https://github.com/paul6668/test/assets/105109093/f6a9be26-588d-4117-87a3-19323678cfe2)
+![image](https://github.com/paul6668/test/assets/105109093/e9c7a8ef-913c-416a-8bdc-fa28213006b1)
+
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+```
+Taken 9.2 mintues
+![image](https://github.com/paul6668/test/assets/105109093/8d911626-9c6f-4d6c-852b-ea5a4f21f08c)
+
+- db01
+![image](https://github.com/paul6668/test/assets/105109093/2629a8af-a1ac-4167-8067-18b758f69e55)
+- db02
+![image](https://github.com/paul6668/test/assets/105109093/43a2a014-1e56-4e92-ac25-c5ba5a58022f)
+- db03
+![image](https://github.com/paul6668/test/assets/105109093/f1b026f7-0434-4082-8c9b-6d689b392980)
+
+![image](https://github.com/paul6668/test/assets/105109093/d235f92e-82f6-41a7-8503-754f2195638e)
+![image](https://github.com/paul6668/test/assets/105109093/af204c54-2f7c-4b01-bc9b-71ad77f94da5)
+![image](https://github.com/paul6668/test/assets/105109093/1310d21d-6b70-4ddf-8818-02d58dac75e7)
+
 
