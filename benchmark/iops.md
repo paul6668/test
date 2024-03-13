@@ -1,3 +1,6 @@
+# I/O Test
+The default 8k block size has been chosen to emulate a PostgreSQL workload.
+
 # Tools
 FIO: https://github.com/wallnerryan/fio-tools
 
