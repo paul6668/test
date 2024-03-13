@@ -177,3 +177,23 @@ Taken 9.2 mintues
 ![image](https://github.com/paul6668/test/assets/105109093/1310d21d-6b70-4ddf-8818-02d58dac75e7)
 
 
+## Testing Part5 - Without OCP, local disk + PSQL single node
+
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+```
+Taken 5 minutes
+
+![image](https://github.com/paul6668/test/assets/105109093/27085129-97bc-49ee-8942-b0d529c8569c)
+
+- db01
+![image](https://github.com/paul6668/test/assets/105109093/e9b708dc-c94a-41be-91f2-c42e20ffac0f)
+
+![image](https://github.com/paul6668/test/assets/105109093/00471503-d4a8-4c6e-b286-728bca73f2d5)
+![image](https://github.com/paul6668/test/assets/105109093/3b7e342f-325f-4423-a3d9-bdb531d6e74f)
+![image](https://github.com/paul6668/test/assets/105109093/e92e16f7-4d75-4ead-8421-b73ba0cdc8d5)
