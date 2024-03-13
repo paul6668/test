@@ -205,10 +205,10 @@ It is not recommend run the psql cluster on top of iomesh, due to the mininal "r
 | Test Scenario                                          | Time Taken (Mins) |
 |-------------------------------------------------------|-------------------|
 | OCP running + iomesh + PSQL 1 primary / 2 standby     | 28                |
-| Without OCP running + iomesh + PSQL 1 primary / 2 standby | 22.4              |
-| Without OCP + local disk + PSQL 1 primary / 2 standby | 9.2               |
-| Without OCP running + iomesh + PSQL single node       | 9                 |
-| Without OCP + local disk + PSQL single node           | 5                 |
+| OCP running + iomesh + PSQL 1 primary / 2 standby | 22.4              |
+| OCP off + local disk + PSQL 1 primary / 2 standby | 9.2               |
+| OCP off + iomesh + PSQL single node       | 9                 |
+| OCP off + local disk + PSQL single node           | 5                 |
 
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
