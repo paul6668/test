@@ -197,3 +197,19 @@ Taken 5 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/00471503-d4a8-4c6e-b286-728bca73f2d5)
 ![image](https://github.com/paul6668/test/assets/105109093/3b7e342f-325f-4423-a3d9-bdb531d6e74f)
 ![image](https://github.com/paul6668/test/assets/105109093/e92e16f7-4d75-4ead-8421-b73ba0cdc8d5)
+
+# Summary
+Since the testing environment dont't have 10G backbone network and enterprise NVME SSD disk, the test intended to do the proof of concept.
+It is not recommand run the psql cluster on top of iomesh, due to the mininal "replicaFactor" can only either 2 or 3 for the iomesh storage class, when you sart a psql cluster with one primay and 2 standy nodes, the data will be synchronous to the stanby nodes on database level, while each node have it own PVC with 2 replica, data write on the each PVC also synchronous to it's replica, at such scenario, huge I/O will be generated and over load the storage. 
+
+| Test Scenario                                          | Time Taken (Mins) |
+|-------------------------------------------------------|-------------------|
+| OCP running + iomesh + PSQL 1 primary / 2 standby     | 28                |
+| Without OCP running + iomesh + PSQL 1 primary / 2 standby | 22.4              |
+| Without OCP + local disk + PSQL 1 primary / 2 standby | 9.2               |
+| Without OCP running + iomesh + PSQL single node       | 9                 |
+| Without OCP + local disk + PSQL single node           | 5                 |
+
+https://docs.iomesh.com/volume-operations/create-storageclass
+![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
+
