@@ -54,12 +54,12 @@ spec:
       storageClassName: iomesh-psql-sc
       volumeMode: Filesystem
 ```
+![image](https://github.com/paul6668/test/assets/105109093/cd940b65-0ec6-430e-987f-d7a08738bbbf)
+
 ```
 kubectl get cluster.postgresql.k8s.enterprisedb.io
 NAME        AGE     INSTANCES   READY   STATUS                     PRIMARY
 psql-db01   6h11m   3           3       Cluster in healthy state   psql-db01-1
-
-![image](https://github.com/paul6668/test/assets/105109093/cd940b65-0ec6-430e-987f-d7a08738bbbf)
 
 
 kubectl get pvc
