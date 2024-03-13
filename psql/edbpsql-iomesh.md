@@ -112,7 +112,7 @@ kubectl cnp pgbench \
 ```
 Taken 22.4 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/0e7068a9-1a6e-4e6f-b4c7-5a7d15d34ba7)
-## Resources Usage
+
 - db01
 ![image](https://github.com/paul6668/test/assets/105109093/e8636367-5c6f-439e-8d65-99393c12128d)
 
