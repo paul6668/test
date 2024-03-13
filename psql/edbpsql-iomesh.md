@@ -71,7 +71,7 @@ psql-db01-3        Bound    pvc-3dab210b-4cb1-4591-b36b-8742752b20b9   20Gi     
 
 ```
 # Benchmarking 
-#Testing Part1 - With OCP runing  
+## Testing Part1 - With OCP runing  
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
@@ -101,7 +101,7 @@ Taken 28 mintues
 
 ![image](https://github.com/paul6668/test/assets/105109093/669083d5-682e-4182-baa3-772de35b7ba7)
 
-#Testing Part2 - Without OCP runing  
+## Testing Part2 - Without OCP runing  
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
