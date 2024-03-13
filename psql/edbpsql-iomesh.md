@@ -129,6 +129,8 @@ Taken 22.4 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/c13415c4-7e1b-4738-924e-ddbd486146d8)
 
 ## Testing Part3 - Without OCP runing and PSQL single node 
+![image](https://github.com/paul6668/test/assets/105109093/de3d6398-d03b-442e-b8e9-42741b971866)
+
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
