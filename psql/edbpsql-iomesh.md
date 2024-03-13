@@ -6,7 +6,7 @@
 - Storage: Virtual NVME disk formed with SSD disk + iomesh v5.3.0-rc13
 
 # Setup
-- Create Storage Class for Postgres
+- Create Storage Class for Postgres, Replica factor at least 2
 ```
 allowVolumeExpansion: true
 apiVersion: storage.k8s.io/v1
@@ -27,7 +27,7 @@ provisioner: com.iomesh.csi-driver
 reclaimPolicy: Retain
 volumeBindingMode: Immediate
 ```
-- Create Postgres Cluster
+- Create Postgres Cluster with 1 primary and 2 replica nodes 
 ```
 apiVersion: postgresql.k8s.enterprisedb.io/v1
 kind: Cluster
@@ -58,6 +58,8 @@ spec:
 kubectl get cluster.postgresql.k8s.enterprisedb.io
 NAME        AGE     INSTANCES   READY   STATUS                     PRIMARY
 psql-db01   6h11m   3           3       Cluster in healthy state   psql-db01-1
+
+![image](https://github.com/paul6668/test/assets/105109093/cd940b65-0ec6-430e-987f-d7a08738bbbf)
 
 
 kubectl get pvc
