@@ -205,7 +205,7 @@ It is not recommend run the psql cluster on top of iomesh, due to the mininal "r
 | Test Scenario                                          | Time Taken (Mins) |
 |-------------------------------------------------------|-------------------|
 | OCP running + iomesh + PSQL 1 primary / 2 standby     | 28                |
-| OCP running + iomesh + PSQL 1 primary / 2 standby | 22.4              |
+| OCP off + iomesh + PSQL 1 primary / 2 standby | 22.4              |
 | OCP off + local disk + PSQL 1 primary / 2 standby | 9.2               |
 | OCP off + iomesh + PSQL single node       | 9                 |
 | OCP off + local disk + PSQL single node           | 5                 |
