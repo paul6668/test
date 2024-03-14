@@ -59,6 +59,10 @@ volumeBindingMode: Immediate
 ```
 ![image](https://github.com/paul6668/test/assets/105109093/26deeee3-ca24-4ec8-b61c-4090dc3d4149)
 
+## ODF
+![image](https://github.com/paul6668/test/assets/105109093/8bb4fdaa-a8b7-4f3a-9e3f-cc0b15fca5f1)
+
+
 ## local Storage Class
 ```
 apiVersion: storage.k8s.io/v1
