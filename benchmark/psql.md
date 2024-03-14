@@ -227,8 +227,31 @@ Taken 17.8 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/f8b14914-5c6e-4f01-8eae-b2da4bb02d49)
 
 - ODF
+
 ![image](https://github.com/paul6668/test/assets/105109093/983a97bf-5a3d-415b-81b8-8f231c2fe86a)
+
 ![image](https://github.com/paul6668/test/assets/105109093/dac542fe-0b65-443a-a70d-0e5bb42b2c82)
+
+## Testing Part6 -  OCP,  + ODF + PSQL single node
+
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+```
+Taken 15.5 minutes
+- db01
+![image](https://github.com/paul6668/test/assets/105109093/2db4f838-0940-4dd0-98a7-fdeabce5f082)
+![image](https://github.com/paul6668/test/assets/105109093/201055a7-73fc-4365-9d47-0947d25dbcb6)
+![image](https://github.com/paul6668/test/assets/105109093/03648319-b276-4b2a-8e1a-98f611505110)
+
+- ODF
+![image](https://github.com/paul6668/test/assets/105109093/1fce5f96-c2d4-4d77-82ab-b264b5335b13)
+
+
 
 # Summary
 Since the testing environment dont't have 10G backbone network and enterprise NVME SSD disk, the test intended to do the proof of concept.
@@ -242,7 +265,7 @@ It is not recommend run the psql cluster on top of iomesh, due to the mininal "r
 | OCP off + iomesh + PSQL single node       | 9                 |
 | OCP off + local disk + PSQL single node           | 5                 |
 | OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                 |
-
+| OCP + ODF + PSQL single node          | 15.5                 |
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
 
