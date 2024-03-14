@@ -4,6 +4,8 @@
 - K8S: KubeSphere v3.3.2, 1 Master and 3 Worker nodes, k8s version v1.23.10
 - Database : EDB Postgresfor Kubernetes, operator version 1.22.1 / quay.io/enterprisedb/postgresql:16.0
 - Storage: Virtual NVME disk formed with SSD disk + iomesh v5.3.0-rc13
+- Openshift 4.12.31
+- ODF 4.12.7-rhodf
 
 # Setup
 - Create Storage Class for Postgres, Replica factor at least 2
@@ -266,6 +268,7 @@ It is not recommend run the psql cluster on top of iomesh, due to the mininal "r
 | OCP off + local disk + PSQL single node           | 5                 |
 | OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                 |
 | OCP + ODF + PSQL single node          | 15.5                 |
+
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
 
