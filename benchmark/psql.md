@@ -198,6 +198,38 @@ Taken 5 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/3b7e342f-325f-4423-a3d9-bdb531d6e74f)
 ![image](https://github.com/paul6668/test/assets/105109093/e92e16f7-4d75-4ead-8421-b73ba0cdc8d5)
 
+## Testing Part6 -  OCP,  + ODF + PSQL 1 primary / 2 standby
+
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+```
+Taken 17.8 minutes
+![image](https://github.com/paul6668/test/assets/105109093/ea8643bc-ca40-4c04-99af-dc209935dc48)
+
+- db01
+![image](https://github.com/paul6668/test/assets/105109093/38aa49b4-50f5-459e-870d-9c267b88c76c)
+![image](https://github.com/paul6668/test/assets/105109093/88bfb1f7-6cca-45dc-95d5-f41b780a5fe7)
+![image](https://github.com/paul6668/test/assets/105109093/e03e8ada-4aa7-459c-bdbd-fcbaec4ed60e)
+
+- db02
+![image](https://github.com/paul6668/test/assets/105109093/92afe9d7-2d81-4d84-a21a-0684d5c9aa66)
+![image](https://github.com/paul6668/test/assets/105109093/106dc054-bb1d-4641-8cb6-90359f3907e1)
+![image](https://github.com/paul6668/test/assets/105109093/c3d53320-9255-43bd-9047-c82aff797a27)
+
+- db03
+![image](https://github.com/paul6668/test/assets/105109093/261441a2-e7f9-4a0b-94c5-8172cf9bba5b)
+![image](https://github.com/paul6668/test/assets/105109093/6bfc6e45-469b-4152-971d-b493d66a2c7a)
+![image](https://github.com/paul6668/test/assets/105109093/f8b14914-5c6e-4f01-8eae-b2da4bb02d49)
+
+- ODF
+![image](https://github.com/paul6668/test/assets/105109093/983a97bf-5a3d-415b-81b8-8f231c2fe86a)
+![image](https://github.com/paul6668/test/assets/105109093/dac542fe-0b65-443a-a70d-0e5bb42b2c82)
+
 # Summary
 Since the testing environment dont't have 10G backbone network and enterprise NVME SSD disk, the test intended to do the proof of concept.
 It is not recommend run the psql cluster on top of iomesh, due to the mininal "replicaFactor" can only either 2 or 3 for the iomesh storage class, when you sart a psql cluster with one primay and 2 standy nodes, the data will be synchronous to the stanby nodes on database level, while each node have it own PVC with 2 replica, data write on each PVC also synchronous to it's replica, at such scenario, huge I/O will be generated and over load the storage. 
@@ -209,6 +241,7 @@ It is not recommend run the psql cluster on top of iomesh, due to the mininal "r
 | OCP off + local disk + PSQL 1 primary / 2 standby | 9.2               |
 | OCP off + iomesh + PSQL single node       | 9                 |
 | OCP off + local disk + PSQL single node           | 5                 |
+| OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                 |
 
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
