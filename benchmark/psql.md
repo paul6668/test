@@ -6,6 +6,7 @@
 - Storage: Virtual NVME disk formed with SSD disk + iomesh v5.3.0-rc13
 - Openshift 4.12.31
 - ODF 4.12.7-rhodf
+- Portworx 3.1
 
 # Setup
 - Create Storage Class for Postgres, Replica factor at least 2
