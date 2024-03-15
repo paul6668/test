@@ -88,3 +88,26 @@ reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
 ```
 ![image](https://github.com/paul6668/test/assets/105109093/75e80fb6-4468-4aeb-8618-b78d9bfa43cd)
+
+## Portworx
+```
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubesphere.io/allow-clone: "true"
+    storageclass.kubesphere.io/allow-snapshot: "true"
+  creationTimestamp: "2024-03-15T02:13:12Z"
+  name: px-rep1-sc
+  resourceVersion: "11124261"
+  uid: 095956d4-7fa9-4c74-a9d0-35b4660006c3
+parameters:
+  io_profile: db
+  priority_io: high
+  repl: "1"
+provisioner: pxd.portworx.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+```
+![image](https://github.com/paul6668/test/assets/105109093/2d75a13f-0b11-4d2e-86db-8f4c761fd11e)
