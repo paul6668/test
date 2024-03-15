@@ -114,9 +114,9 @@ volumeBindingMode: Immediate
 
 # Summary
 
-| Storage                                                |     Average       |
+| Storage                                                |     Average IOPS  |
 |--------------------------------------------------------|-------------------|
-| iomesh                                                 |                   |
-| ODF                                                    |                   |
-| Portw                                                  |                   |
-| Local                                                  |                   |
+| iomesh                                                 |     3652.69       |
+| ODF                                                    |     1338.35       |
+| Portworx                                               |     12621.12      |
+| Local                                                  |     16418.5       |
