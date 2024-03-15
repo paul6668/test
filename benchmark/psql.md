@@ -83,7 +83,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 28 mintues
+Time taken: 28 mintues
 ![image](https://github.com/paul6668/test/assets/105109093/03540107-2851-499f-9f65-506e779c4f66)
 
 ![image](https://github.com/paul6668/test/assets/105109093/0743dff8-51c3-4e44-8df2-8e1aed2ea8f1)
@@ -113,7 +113,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 22.4 minutes
+Time taken: 22.4 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/0e7068a9-1a6e-4e6f-b4c7-5a7d15d34ba7)
 
 - db01
@@ -142,7 +142,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 9 minutes
+Time taken: 9 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/55e797f5-3eac-4bbd-8c4d-ec5333c1a696)
 
 - db01
@@ -165,7 +165,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 9.2 mintues
+Time taken: 9.2 mintues
 ![image](https://github.com/paul6668/test/assets/105109093/8d911626-9c6f-4d6c-852b-ea5a4f21f08c)
 
 - db01
@@ -190,7 +190,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 5 minutes
+Time taken: 5 minutes
 
 ![image](https://github.com/paul6668/test/assets/105109093/27085129-97bc-49ee-8942-b0d529c8569c)
 
@@ -211,7 +211,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 17.8 minutes
+Time taken: 17.8 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/ea8643bc-ca40-4c04-99af-dc209935dc48)
 
 - db01
@@ -245,7 +245,7 @@ kubectl cnp pgbench \
   -- --initialize --scale 1000
 
 ```
-Taken 15.5 minutes
+Time taken: 15.5 minutes
 - db01
 ![image](https://github.com/paul6668/test/assets/105109093/2db4f838-0940-4dd0-98a7-fdeabce5f082)
 ![image](https://github.com/paul6668/test/assets/105109093/201055a7-73fc-4365-9d47-0947d25dbcb6)
@@ -284,7 +284,7 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 
 ```
-Taken 6.3 minutes
+Time taken: 6.3 minutes
 
 ## Testing Part8 -  OCP off + Portworx + PSQL single node
 
@@ -315,11 +315,12 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 
 ```
-Taken 5.9 minutes
+Time taken: 5.9 minutes
 
 # Summary
 Since the testing environment dont't have 10G backbone network and enterprise NVME SSD disk, the test intended to do the proof of concept.
 It is not recommend run the psql cluster on top of iomesh, due to the mininal "replicaFactor" can only either 2 or 3 for the iomesh storage class, when you sart a psql cluster with one primay and 2 standy nodes, the data will be synchronous to the stanby nodes on database level, while each node have it own PVC with 2 replica, data write on each PVC also synchronous to it's replica, at such scenario, huge I/O will be generated and over load the storage. 
+Compare with iomesh, portworx and ODF, portworx accept 1 replica factor while the iomesh is 2 or 3 and ODF default is 3 
 
 | Test Scenario                                          | Time Taken (Mins) |
 |-------------------------------------------------------|-------------------|
