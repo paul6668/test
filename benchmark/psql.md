@@ -103,7 +103,7 @@ Taken 28 mintues
 
 ![image](https://github.com/paul6668/test/assets/105109093/669083d5-682e-4182-baa3-772de35b7ba7)
 
-## Testing Part2 - Without OCP runing, iomesh + PSQL 1 primary / 2 standby
+## Testing Part2 - OCP off, iomesh + PSQL 1 primary / 2 standby
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
 kubectl cnp pgbench \
@@ -130,7 +130,7 @@ Taken 22.4 minutes
 
 ![image](https://github.com/paul6668/test/assets/105109093/c13415c4-7e1b-4738-924e-ddbd486146d8)
 
-## Testing Part3 - Without OCP runing, iomesh + PSQL single node 
+## Testing Part3 - OCP off, iomesh + PSQL single node 
 ![image](https://github.com/paul6668/test/assets/105109093/de3d6398-d03b-442e-b8e9-42741b971866)
 
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
@@ -151,7 +151,7 @@ Taken 9 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/3e9212ac-dcc0-4837-b30e-21200ce4300f)
 ![image](https://github.com/paul6668/test/assets/105109093/f9185f5f-95ef-49b8-93d5-86010cde511e)
 
-## Testing Part4 - Without OCP, local disk + PSQL 1 primary / 2 standby
+## Testing Part4 - OCP off, local disk + PSQL 1 primary / 2 standby
 ![image](https://github.com/paul6668/test/assets/105109093/d20eb1b9-fbde-488b-beee-fefca5d76d5b)
 ![image](https://github.com/paul6668/test/assets/105109093/f6a9be26-588d-4117-87a3-19323678cfe2)
 ![image](https://github.com/paul6668/test/assets/105109093/e9c7a8ef-913c-416a-8bdc-fa28213006b1)
@@ -179,7 +179,7 @@ Taken 9.2 mintues
 ![image](https://github.com/paul6668/test/assets/105109093/1310d21d-6b70-4ddf-8818-02d58dac75e7)
 
 
-## Testing Part5 - Without OCP, local disk + PSQL single node
+## Testing Part5 - OCP off, local disk + PSQL single node
 
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
@@ -251,9 +251,10 @@ Taken 15.5 minutes
 ![image](https://github.com/paul6668/test/assets/105109093/03648319-b276-4b2a-8e1a-98f611505110)
 
 - ODF
+  
 ![image](https://github.com/paul6668/test/assets/105109093/1fce5f96-c2d4-4d77-82ab-b264b5335b13)
 
-## Testing Part6 -  OCP off + Portworx + PSQL 1 primary / 2 standby
+## Testing Part7 -  OCP off + Portworx + PSQL 1 primary / 2 standby
 
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
@@ -284,6 +285,37 @@ volumeBindingMode: Immediate
 ```
 Taken 6.3 minutes
 
+## Testing Part8 -  OCP off + Portworx + PSQL single node
+
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubesphere.io/allow-clone: "true"
+    storageclass.kubesphere.io/allow-snapshot: "true"
+  creationTimestamp: "2024-03-15T02:13:12Z"
+  name: px-rep1-sc
+  resourceVersion: "11124261"
+  uid: 095956d4-7fa9-4c74-a9d0-35b4660006c3
+parameters:
+  io_profile: db
+  priority_io: high
+  repl: "1"
+provisioner: pxd.portworx.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+
+```
+Taken 5.9 minutes
+
 # Summary
 Since the testing environment dont't have 10G backbone network and enterprise NVME SSD disk, the test intended to do the proof of concept.
 It is not recommend run the psql cluster on top of iomesh, due to the mininal "replicaFactor" can only either 2 or 3 for the iomesh storage class, when you sart a psql cluster with one primay and 2 standy nodes, the data will be synchronous to the stanby nodes on database level, while each node have it own PVC with 2 replica, data write on each PVC also synchronous to it's replica, at such scenario, huge I/O will be generated and over load the storage. 
@@ -297,6 +329,8 @@ It is not recommend run the psql cluster on top of iomesh, due to the mininal "r
 | OCP off + local disk + PSQL single node           | 5                 |
 | OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                 |
 | OCP + ODF + PSQL single node          | 15.5                 |
+| OCP off + Portworx + PSQL 1 primary / 2 standby          | 6.3                 |
+| OCP off + Portworx + PSQL single node          | 5.9                 |
 
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
