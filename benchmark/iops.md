@@ -111,3 +111,12 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 ```
 ![image](https://github.com/paul6668/test/assets/105109093/2d75a13f-0b11-4d2e-86db-8f4c761fd11e)
+
+# Summary
+
+| Storage                                                |     Average       |
+|--------------------------------------------------------|-------------------|
+| iomesh                                                 |                   |
+| ODF                                                    |                   |
+| Portw                                                  |                   |
+| Local                                                  |                   |
