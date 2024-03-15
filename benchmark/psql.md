@@ -253,7 +253,36 @@ Taken 15.5 minutes
 - ODF
 ![image](https://github.com/paul6668/test/assets/105109093/1fce5f96-c2d4-4d77-82ab-b264b5335b13)
 
+## Testing Part6 -  OCP off + Portworx + PSQL 1 primary / 2 standby
 
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
+```
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
+allowVolumeExpansion: true
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    storageclass.kubesphere.io/allow-clone: "true"
+    storageclass.kubesphere.io/allow-snapshot: "true"
+  creationTimestamp: "2024-03-15T02:13:12Z"
+  name: px-rep1-sc
+  resourceVersion: "11124261"
+  uid: 095956d4-7fa9-4c74-a9d0-35b4660006c3
+parameters:
+  io_profile: db
+  priority_io: high
+  repl: "1"
+provisioner: pxd.portworx.com
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+
+```
+Taken 6.3 minutes
 
 # Summary
 Since the testing environment dont't have 10G backbone network and enterprise NVME SSD disk, the test intended to do the proof of concept.
