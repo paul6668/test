@@ -322,17 +322,17 @@ Since the testing environment dont't have 10G backbone network and enterprise NV
 It is not recommend run the psql cluster on top of iomesh, due to the mininal "replicaFactor" can only either 2 or 3 for the iomesh storage class, when you sart a psql cluster with one primay and 2 standy nodes, the data will be synchronous to the stanby nodes on database level, while each node have it own PVC with 2 replica, data write on each PVC also synchronous to it's replica, at such scenario, huge I/O will be generated and over load the storage. 
 Compare with iomesh, portworx and ODF, portworx accept 1 replica factor while the iomesh is 2 or 3 and ODF default is 3 
 
-| Test Scenario                                          | Time Taken (Mins) |
-|-------------------------------------------------------|-------------------|
-| OCP running + iomesh + PSQL 1 primary / 2 standby     | 28                |
-| OCP off + iomesh + PSQL 1 primary / 2 standby | 22.4              |
-| OCP off + local disk + PSQL 1 primary / 2 standby | 9.2               |
-| OCP off + iomesh + PSQL single node       | 9                 |
-| OCP off + local disk + PSQL single node           | 5                 |
-| OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                 |
-| OCP + ODF + PSQL single node          | 15.5                 |
-| OCP off + Portworx + PSQL 1 primary / 2 standby          | 6.3                 |
-| OCP off + Portworx + PSQL single node          | 5.9                 |
+| Test Scenario                                          | 1st (Mins) |  2nd (Mins) |  3rd (Mins) |
+|-------------------------------------------------------|-------------------|---------|---------|
+| OCP running + iomesh + PSQL 1 primary / 2 standby     | 28                |          |        |
+| OCP off + iomesh + PSQL 1 primary / 2 standby | 22.4                      |          |        |
+| OCP off + local disk + PSQL 1 primary / 2 standby | 9.2                   |          |        |
+| OCP off + iomesh + PSQL single node               | 9                     |          |        |
+| OCP off + local disk + PSQL single node           | 5                     |          |        |
+| OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                    |          |        |
+| OCP + ODF + PSQL single node          | 15.5                              |          |        |
+| OCP off + Portworx + PSQL 1 primary / 2 standby     | 6.3                 |9.34      |        |
+| OCP off + Portworx + PSQL single node          | 5.9                      |          |        |
 
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
