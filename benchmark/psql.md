@@ -331,7 +331,7 @@ Compare with iomesh, portworx and ODF, portworx accept 1 replica factor while th
 | OCP off + local disk + PSQL single node           | 5                     |          |        |
 | OCP + ODF + PSQL 1 primary / 2 standby          | 17.8                    |          |        |
 | OCP + ODF + PSQL single node          | 15.5                              |          |        |
-| OCP off + Portworx + PSQL 1 primary / 2 standby     | 6.3                 |8.8      |    9.4    |
+| OCP off + Portworx + PSQL 1 primary / 2 standby     | 6.3                 |8.8      |    7.2    |
 | OCP off + Portworx + PSQL single node          | 5.9                      |          |        |
 
 https://docs.iomesh.com/volume-operations/create-storageclass
