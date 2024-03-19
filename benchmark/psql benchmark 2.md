@@ -8,36 +8,59 @@
 - ODF 4.12.7-rhodf
 - Portworx 3.1
 
-# Setup
-- Create Storage Class for Postgres, Replica factor at least 2
+
+# Infra Setup
+
+## ESXi
+2 hosts with load attached SSD
+ESXi01
+ - CPU: 64 @ 2.1GHz
+ - Memory: 383 GB
+ESXi02
+ - CPU: 64 @ 2.1GHz
+ - Memory: 256 GB
+
+## K8S
+NAME       STATUS   ROLES                  AGE    VERSION
+master01   Ready    control-plane,master   129d   v1.23.10
+worker01   Ready    worker                 129d   v1.23.10
+worker02   Ready    worker                 129d   v1.23.10
+worker03   Ready    worker                 129d   v1.23.10
+
+Worker node Spec:
+CPU: 8 vcpu
+Memory: 16 GB
+Storage: 100 GB for storage pool steup
+
+
+# Benchmarking
+Perform ten million write transaction for 3 times using the pgbench tools.
+
+## Cluster
+ - Make sure the psql node distrubute accross different ESXi node
+ - Perform psql failover during the last test
+
+## Single Node
+ - Make sure the benchmarking happen on each ESXi nodes
+
+## PortWorx
+### Testing Part1 - PSQL 1 primary / 1 standby
+This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
-allowVolumeExpansion: true
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  annotations:
-    storageclass.kubesphere.io/allow-clone: "true"
-    storageclass.kubesphere.io/allow-snapshot: "true"
-  creationTimestamp: "2024-03-12T03:16:28Z"
-  name: iomesh-psql-sc
-  resourceVersion: "9597139"
-  uid: 950eec29-4eb7-4ff6-925d-be222cd25582
-parameters:
-  csi.storage.k8s.io/fstype: ext4
-  replicaFactor: "2"
-  thinProvision: "true"
-provisioner: com.iomesh.csi-driver
-reclaimPolicy: Retain
-volumeBindingMode: Immediate
+kubectl cnp pgbench \
+  --job-name pgbench-init \
+  cluster-example \
+  -- --initialize --scale 1000
+
 ```
-- Create Postgres Cluster with 1 primary and 2 standby nodes 
+### Setup
 ```
 apiVersion: postgresql.k8s.enterprisedb.io/v1
 kind: Cluster
 metadata:
-  name: psql-db01
+  name: psql
 spec:
-  instances: 3
+  instances: 2
 
   # Example of rolling update strategy:
   # - unsupervised: automated update of the primary once all
@@ -53,56 +76,35 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 5Gi
-      storageClassName: iomesh-psql-sc
+          storage: 30Gi
+      storageClassName: "sroage-class"
       volumeMode: Filesystem
-```
-![image](https://github.com/paul6668/test/assets/105109093/cd940b65-0ec6-430e-987f-d7a08738bbbf)
 
-```
 kubectl get cluster.postgresql.k8s.enterprisedb.io
-NAME        AGE     INSTANCES   READY   STATUS                     PRIMARY
-psql-db01   6h11m   3           3       Cluster in healthy state   psql-db01-1
+NAME   AGE   INSTANCES   READY   STATUS                     PRIMARY
+psql   39m   2           2       Cluster in healthy state   psql-1
+
+Instances status
+Name    Database Size  Current LSN  Replication role  Status  QoS         Manager Version  Node
+----    -------------  -----------  ----------------  ------  ---         ---------------  ----
+psql-1  15 GB          3/5000000    Primary           OK      BestEffort  1.21.0           worker02
+psql-2  15 GB          3/5000000    Standby (async)   OK      BestEffort  1.21.0           worker03
 
 
 kubectl get pvc
 NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
-iomesh-mysql-pvc   Bound    pvc-4cf15dcd-e7ae-4b15-a380-91ff717dc3e6   10Gi       RWO            iomesh-mysql-sc   15d
-psql-db01-1        Bound    pvc-86583f77-357a-4bea-aacc-7f78f338c1cc   20Gi       RWO            iomesh-psql-sc    6h12m
-psql-db01-2        Bound    pvc-90d5d668-e7a6-4ff9-b88c-3b7675837340   20Gi       RWO            iomesh-psql-sc    6h10m
-psql-db01-3        Bound    pvc-3dab210b-4cb1-4591-b36b-8742752b20b9   20Gi       RWO            iomesh-psql-sc    6h8m
+NAME     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+psql-1   Bound    pvc-714c3dc4-0d24-4605-bfde-e299930e0d6f   30Gi       RWO            px-rep1-sc     40m
+psql-2   Bound    pvc-d93048e9-cc21-4cb7-b3a0-8ca292d74bcb   30Gi       RWO            px-rep1-sc     39m
+
 
 ```
-# Benchmarking 
-## Testing Part1 - With OCP runing, iomesh + PSQL 1 primary / 2 standby
-This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
-```
-kubectl cnp pgbench \
-  --job-name pgbench-init \
-  cluster-example \
-  -- --initialize --scale 1000
-
-```
-Time taken: 28 mintues
-![image](https://github.com/paul6668/test/assets/105109093/03540107-2851-499f-9f65-506e779c4f66)
-
-![image](https://github.com/paul6668/test/assets/105109093/0743dff8-51c3-4e44-8df2-8e1aed2ea8f1)
+Time taken:
+| 1st (Mins) |  2nd (Mins) |  3rd (Mins) |
+|------------|-------------|-------------|
+|6.6         |6.4          |6            |
 
 
-
-## Resources Usage
-- db01
-![image](https://github.com/paul6668/test/assets/105109093/acfd1669-80e6-4076-a034-a9dea2746b0a)
-- db02
-![image](https://github.com/paul6668/test/assets/105109093/6b45feb1-1a00-44e8-aff4-7a210f82c389)
-- db03
-![image](https://github.com/paul6668/test/assets/105109093/ae0d3028-ad8f-420f-ad61-5b578a73b779)
-
-![image](https://github.com/paul6668/test/assets/105109093/96f254aa-bf51-43c8-9eae-e39faad1274c)
-
-![image](https://github.com/paul6668/test/assets/105109093/ffe23ad5-c68f-486f-aab5-0376545af042)
-
-![image](https://github.com/paul6668/test/assets/105109093/669083d5-682e-4182-baa3-772de35b7ba7)
 
 ## Testing Part2 - OCP off, iomesh + PSQL 1 primary / 2 standby
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
@@ -336,5 +338,3 @@ Compare with iomesh, portworx and ODF, portworx accept 1 replica factor while th
 
 https://docs.iomesh.com/volume-operations/create-storageclass
 ![image](https://github.com/paul6668/test/assets/105109093/b8f87bb1-16cf-434e-aed4-a7420c982fbd)
-
-![alt text](image.png)
