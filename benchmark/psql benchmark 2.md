@@ -12,10 +12,12 @@
 # Infra Setup
 
 ## ESXi
-2 hosts with load attached SSD
+2 hosts with local attached SSD disk
+
 ESXi01
  - CPU: 64 @ 2.1GHz
  - Memory: 383 GB
+
 ESXi02
  - CPU: 64 @ 2.1GHz
  - Memory: 256 GB
@@ -36,11 +38,11 @@ Storage: 100 GB for storage pool steup
 # Benchmarking
 Perform ten million write transaction for 3 times using the pgbench tools.
 
-## Cluster
+### Cluster
  - Make sure the psql node distrubute accross different ESXi node
  - Perform psql failover during the last test
 
-## Single Node
+### Single Node
  - Make sure the benchmarking happen on each ESXi nodes
 
 ## PortWorx
