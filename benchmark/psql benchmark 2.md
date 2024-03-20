@@ -131,6 +131,12 @@ Time taken:
 |worker02           |6.6         |6.4          |             |
 |worker03           |            |             |6            |
 
+Transaction rate:
+| Test     | Mins       |  TPS        |
+|----------|------------|-------------|
+| 1st      |6.6         | 252,525.25  |
+| 2nd      |6.4         | 260,416.67  |
+| 3rd      |6           | 277,777.78  |
 
 ### Testing Part2 - PSQL single node
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
@@ -220,7 +226,12 @@ Time taken:
 |worker03           |6.3         |6.2          |             |
 |worker02           |            |             |11.5         |
 
-
+Transaction rate:
+| Test     | Mins       |  TPS        |
+|----------|------------|-------------|
+| 1st      |6.3         | 264,550.26  |
+| 2nd      |6.2         | 268,817.20  |
+| 3rd      |11.5        | 144,927.53  |
 
 
 ## IOMesh
@@ -305,6 +316,13 @@ Time taken:
 |worker03           |11.3        |13           |             |
 |worker01           |            |             |13.4         |
 
+Transaction rate:
+| Test     | Mins       |  TPS        |
+|----------|------------|-------------|
+| 1st      |11.3        | 147,492.6   |
+| 2nd      |13          | 128,205.13  |
+| 3rd      |13.4        | 124,378.11  |
+
 ### Testing Part2 - PSQL single node
 This example creates a job called pgbench-init that initializes for pgbench OLTP-like purposes the app database in a Cluster named cluster-example, using a scale factor of 1000:
 ```
@@ -386,3 +404,23 @@ Time taken:
 |-------------------|------------|-------------|-------------|
 |worker03           |8.8         |8.8          |             |
 |worker01           |            |             |10           |
+
+Transaction rate:
+| Test     | Mins       |  TPS        |
+|----------|------------|-------------|
+| 1st      | 8.8        | 189,393.94  |
+| 2nd      | 8.8        | 189,393.93  |
+| 3rd      | 10         | 166,666.67  |
+
+
+# Smmary
+## Cluster
+| PSQL Primary Node | 1st (Mins) |  2nd (Mins) |  3rd (Mins) |
+|-------------------|------------|-------------|-------------|
+|-------------------------PortWorx---------------------------|
+|worker03           |6.3         |6.2          |             |
+|worker02           |            |             |11.5         |
+|-------------------------IOMesh-----------------------------|
+|worker03           |11.3        |13           |             |
+|worker01           |            |             |13.4         |
+
