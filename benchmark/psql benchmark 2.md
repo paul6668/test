@@ -459,7 +459,7 @@ Transaction rate:
 | 3rd      | 10         | 166,666.67  |
 
 
-# Crunchydata
+# Crunchydata Benchmark on Portworx
 ## Cluster
 ### Postgres Cluster Congiguration
 ```
